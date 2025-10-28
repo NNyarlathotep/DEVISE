@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "devise"
+version = "0.1.0"
+description = "Package for Paper DEVISE : Depth-Aware Vegetation Indexing System"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [{ name = "Zhizhuang Chen", email = "zchen141@u.rochester.edu" }]
+keywords = ["devise", "segementation"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+dependencies = []                      # 运行依赖，例如 ["requests>=2.31"]
+
+[project.urls]
+Homepage = "https://github.com/yourname/hello-pkg"
+Issues = "https://github.com/yourname/hello-pkg/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hello_pkg"]
