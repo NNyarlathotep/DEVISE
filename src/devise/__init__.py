@@ -4,9 +4,9 @@ DEVISE - Depth-Aware Vegetation Indexing System
 A package for vegetation segmentation and indexing with depth awareness.
 """
 
-__version__ = "1.0.0"
-__author__ = "Zhizhuang Chen"
-__email__ = "zchen141@u.rochester.edu"
+__version__ = "1.0.2"
+__author__ = "Cantay Caliskan, Zhizhuang Chen, Junjie Zhao, Linglan Yang, Mingzhen Zhang"
+__email__ = "ccaliska@ur.rochester.edu, zchen141@u.rochester.edu, jzhao58@u.rochester.edu, lyang49@u.rochester.edu, mzhang96@u.rochester.edu"
 
 # Import core functions with descriptive names
 from .combine import (
@@ -91,34 +91,34 @@ def run_complete_pipeline(raw_folder, resized_folder, mask_folder, depth_mask_fo
         gvi_db_path: Path to standard GVI database
         depth_db_path: Path to depth-weighted GVI database
     """
-    print("🚀 Starting DEVISE complete pipeline...")
+    print("Starting DEVISE complete pipeline...")
     print("=" * 60)
     
     # Stage 1: Vegetation segmentation and GVI calculation
-    print("\n📊 Stage 1/4: Vegetation Segmentation & GVI Calculation")
+    print("\nStage 1/4: Vegetation Segmentation & GVI Calculation")
     print("-" * 60)
     run_vegetation_analysis_pipeline(raw_folder, resized_folder, mask_folder, gvi_db_path)
     
     # Stage 2: Depth estimation
-    print("\n🔍 Stage 2/4: Depth Map Generation")
+    print("\nStage 2/4: Depth Map Generation")
     print("-" * 60)
     generate_depth_maps_batch(resized_folder, depth_mask_folder, depth_image_folder)
     
     # Stage 3: Depth-weighted GVI computation
-    print("\n⚖️  Stage 3/4: Depth-Weighted GVI Calculation")
+    print("\nStage 3/4: Depth-Weighted GVI Calculation")
     print("-" * 60)
     compute_depth_weighted_gvi_batch(mask_folder, depth_mask_folder, depth_db_path)
     
     # Stage 4: Visualization generation
-    print("\n🎨 Stage 4/4: Visualization Generation")
+    print("\nStage 4/4: Visualization Generation")
     print("-" * 60)
     generate_visualization_batch(resized_folder, mask_folder, result_folder)
     
     print("\n" + "=" * 60)
-    print("✅ DEVISE complete pipeline finished successfully!")
-    print(f"📁 Results saved to: {result_folder}")
-    print(f"📊 Standard GVI database: {gvi_db_path}")
-    print(f"📊 Depth-weighted GVI database: {depth_db_path}")
+    print("DEVISE complete pipeline finished successfully!")
+    print(f"Results saved to: {result_folder}")
+    print(f"Standard GVI database: {gvi_db_path}")
+    print(f"Depth-weighted GVI database: {depth_db_path}")
 
 def quick_vegetation_analysis(raw_folder, output_folder, db_path):
     """
@@ -135,7 +135,7 @@ def quick_vegetation_analysis(raw_folder, output_folder, db_path):
     mask_folder = os.path.join(output_folder, "masks")
     result_folder = os.path.join(output_folder, "visualizations")
     
-    print("🚀 Starting quick vegetation analysis...")
+    print("Starting quick vegetation analysis...")
     
     # Run segmentation and GVI calculation
     run_vegetation_analysis_pipeline(raw_folder, resized_folder, mask_folder, db_path)
@@ -143,4 +143,4 @@ def quick_vegetation_analysis(raw_folder, output_folder, db_path):
     # Generate visualizations
     generate_visualization_batch(resized_folder, mask_folder, result_folder)
     
-    print(f"✅ Analysis complete! Results in: {output_folder}")
+    print(f"Analysis complete! Results in: {output_folder}")
