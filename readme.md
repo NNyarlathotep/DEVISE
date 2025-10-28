@@ -4,14 +4,14 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Paper](https://img.shields.io/badge/Paper-SSRN-red.svg)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5371210#paper-references-widget)
 
-DEVISE is a comprehensive Python package for vegetation analysis that combines semantic segmentation with depth estimation to provide accurate vegetation indexing. The system leverages state-of-the-art deep learning models to identify and quantify vegetation coverage in images while incorporating depth information for enhanced analysis.
+DEVISE (Depth-Aware Vegetation Indexing System) is a comprehensive Python package for vegetation analysis that combines semantic segmentation with depth estimation to provide accurate vegetation indexing. The system leverages state-of-the-art deep learning models to identify and quantify vegetation coverage in images while incorporating depth information for enhanced analysis. Applied to 1,441,746 panoramas collected every 20 m along the road networks of 60 U.S. swing counties (2004-2024), DEVISE produces the first county-month panel of street-level greenness spanning two decades. 
 
-## 📄 Research Paper
+## Research Paper
 
 This package implements the methodology described in our research paper:
 **"DEVISE: Depth-Aware Vegetation Indexing System"**
 
-📖 [**Read the full paper on SSRN →**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5371210#paper-references-widget)
+[**Read the full paper on SSRN →**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5371210#paper-references-widget)
 
 ## Installation
 
