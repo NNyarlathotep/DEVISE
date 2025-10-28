@@ -18,13 +18,13 @@ pip install -e .
 
 ## Quick Start
 
-### Segmentation With Depth
+### Complete Pipeline with Depth Analysis
 
 ```python
 import devise
 
 # Run the complete DEVISE pipeline
-devise.devise_pipeline(
+devise.run_complete_pipeline(
     raw_folder="raw_images",           # Input images
     resized_folder="resized",          # Preprocessed images
     mask_folder="masks",               # Segmentation masks
@@ -36,13 +36,13 @@ devise.devise_pipeline(
 )
 ```
 
-### Segmentation Without Depth
+### Quick Analysis Without Depth
 
 ```python
 import devise
 
 # For faster processing without depth analysis
-devise.devise_pipeline_without_depth(
+devise.quick_vegetation_analysis(
     raw_folder="raw_images",
     output_folder="output",
     db_path="results.db"
@@ -54,42 +54,93 @@ devise.devise_pipeline_without_depth(
 ```python
 import devise
 
-# Step-by-step processing
-# 1. Semantic segmentation and GVI calculation
-devise.pipeline_main("raw_images", "resized", "masks", "gvi.db")
+# Step-by-step processing with new function names
 
-# 2. Depth estimation
-devise.depth_main("resized", "depth_masks", "depth_images")
+# 1. Vegetation segmentation and GVI calculation
+devise.run_vegetation_analysis_pipeline(
+    "raw_images", "resized", "masks", "gvi.db"
+)
+
+# 2. Depth map generation
+devise.generate_depth_maps_batch(
+    "resized", "depth_masks", "depth_images"
+)
 
 # 3. Depth-weighted GVI calculation
-devise.depth_combine_main("masks", "depth_masks", "depth_gvi.db")
+devise.compute_depth_weighted_gvi_batch(
+    "masks", "depth_masks", "depth_gvi.db"
+)
 
 # 4. Generate visualization overlays
-devise.combine_main("resized", "masks", "results")
+devise.generate_visualization_batch(
+    "resized", "masks", "results"
+)
 ```
 
 ### Advanced Usage
 
 ```python
 import devise
+import numpy as np
 
-# Custom image processing
-devise.overlay_mask_on_image(
+# Process a single image with custom parameters
+devise.create_vegetation_overlay(
     image_path="image.jpg",
     mask_npy_path="mask.npy", 
-    output_path="result.jpg"
+    output_path="result.jpg",
+    alpha=0.6  # Adjust transparency
 )
 
-# Calculate weighted GVI with custom depth data
-import numpy as np
+# Estimate depth for a single image
+devise.estimate_depth_for_image(
+    image_path="image.jpg",
+    depth_npy_output_path="depth.npy",
+    depth_vis_output_path="depth_vis.jpg"
+)
+
+# Calculate depth-weighted GVI for custom data
 mask = np.load("vegetation_mask.npy")
 depth = np.load("depth_map.npy")
-weighted_gvi = devise.compute_weighted_gvi(mask[:,:,0], depth)  # For trees
+tree_gvi = devise.calculate_depth_weighted_gvi(mask[:,:,0], depth)
+grass_gvi = devise.calculate_depth_weighted_gvi(mask[:,:,1], depth)
+plant_gvi = devise.calculate_depth_weighted_gvi(mask[:,:,2], depth)
 
 # Database operations
-conn = devise.init_gvi_db("custom.db")
-devise.save_gvi_to_db(conn, "image_001", 0.65, 0.23, 0.12, 1.0)
+conn = devise.initialize_gvi_database("custom.db")
+devise.save_gvi_to_database(conn, "image_001", 0.65, 0.23, 0.12, 1.0)
+conn.close()
 ```
+
+## API Reference
+
+### Main Pipeline Functions
+
+- **`run_complete_pipeline(...)`** - Execute full DEVISE workflow with depth analysis
+- **`quick_vegetation_analysis(...)`** - Fast vegetation analysis without depth
+- **`run_vegetation_analysis_pipeline(...)`** - Segmentation and GVI calculation
+- **`generate_depth_maps_batch(...)`** - Batch depth estimation
+- **`compute_depth_weighted_gvi_batch(...)`** - Batch depth-weighted GVI
+- **`generate_visualization_batch(...)`** - Batch visualization generation
+
+### Core Analysis Functions
+
+- **`segment_vegetation_and_calculate_gvi(...)`** - Segment single image and compute GVI
+- **`compute_vegetation_indices(...)`** - Calculate GVI from mask
+- **`calculate_depth_weighted_gvi(...)`** - Compute depth-weighted GVI
+- **`create_vegetation_overlay(...)`** - Create visualization overlay
+
+### Image Processing Functions
+
+- **`preprocess_image(...)`** - Remove borders and resize image
+- **`apply_vegetation_color_filter(...)`** - Apply HSV filtering
+- **`estimate_depth_for_image(...)`** - Estimate depth for single image
+
+### Database Functions
+
+- **`initialize_gvi_database(...)`** - Create/connect to GVI database
+- **`save_gvi_to_database(...)`** - Save GVI results to database
+- **`init_depth_gvi_db(...)`** - Initialize depth-weighted GVI database
+- **`save_depth_gvi_results(...)`** - Save depth GVI results
 
 ## Package Structure
 
@@ -127,8 +178,8 @@ CREATE TABLE gvi (
 ```
 
 ### File Outputs
-- **Segmentation masks**: `.npy` files with per-pixel class predictions
-- **Depth maps**: `.npy` files with normalized depth values
+- **Segmentation masks**: `.npy` files with per-pixel class predictions (3 channels: trees, grass, plants)
+- **Depth maps**: `.npy` files with normalized depth values [0, 1]
 - **Visualizations**: `.jpg` overlay images showing segmentation results
 - **Databases**: `.db` files with GVI measurements
 
@@ -140,8 +191,22 @@ CREATE TABLE gvi (
 - OpenCV 4.5+
 - NumPy 1.21+
 - Pillow 8.0+
-
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Author
+**Cantay Caliskan** 
+Email: ccaliska@ur.rochester.edu
+
+**Zhizhuang Chen**  
+Email: zchen141@u.rochester.edu  
+
+**Junjie Zhao** 
+Email: jzhao58@u.rochester.edu
+
+**Linglan Yang** 
+Email: lyang49@u.rochester.edu
+
+**Mingzhen Zhang** 
+Email: mzhang96@u.rochester.edu

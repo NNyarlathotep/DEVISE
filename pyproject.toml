@@ -4,13 +4,19 @@ build-backend = "hatchling.build"
 
 [project]
 name = "devise-greenness"
-version = "0.1.0"
+version = "1.0.0"
 description = "Package for Paper DEVISE : Depth-Aware Vegetation Indexing System"
 readme = "README.md"
 requires-python = ">=3.12"
 license = {text = "MIT"}
-authors = [{ name = "Zhizhuang Chen", email = "zchen141@u.rochester.edu" }]
-keywords = ["devise", "segementation"]
+authors = [
+  { name = "Cantay Caliskan", email = "ccaliska@ur.rochester.edu" },
+  { name = "Zhizhuang Chen", email = "zchen141@u.rochester.edu" },
+  { name = "Junjie Zhao", email = "jzhao58@u.rochester.edu" },
+  { name = "Linglan Yang", email = "lyang49@u.rochester.edu" },
+  { name = "Mingzhen Zhang", email = "mzhang96@u.rochester.edu" }
+]
+keywords = ["segementation", "Computer Vision", "Urban Analytics", "Green Vegetation Index", "Monocular Depth Estimation", "Computational Social Science"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
