@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "devise-greenness"
-version = "1.0.2"
+version = "1.0.3"
 description = "Package for Paper DEVISE : Depth-Aware Vegetation Indexing System"
 readme = "README.md"
 requires-python = ">=3.12"

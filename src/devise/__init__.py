@@ -4,7 +4,7 @@ DEVISE - Depth-Aware Vegetation Indexing System
 A package for vegetation segmentation and indexing with depth awareness.
 """
 
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 __author__ = "Cantay Caliskan, Zhizhuang Chen, Junjie Zhao, Linglan Yang, Mingzhen Zhang"
 __email__ = "ccaliska@ur.rochester.edu, zchen141@u.rochester.edu, jzhao58@u.rochester.edu, lyang49@u.rochester.edu, mzhang96@u.rochester.edu"
 
