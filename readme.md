@@ -13,6 +13,31 @@ This package implements the methodology described in our research paper:
 
 [**Read the full paper on SSRN →**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5371210#paper-references-widget)
 
+## Examples
+
+Below are sample images processed using the DEVISE system:
+
+### Test Sample 1
+![Test Sample 1](example_images/test1_sample.jpg)
+
+### Test Sample 2
+![Test Sample 2](example_images/test2_sample.jpg)
+
+### Test Sample 4
+![Test Sample 4](example_images/test4_sample.jpg)
+
+### Test Sample 5
+![Test Sample 5](example_images/test5_sample.jpg)
+
+### Test Sample 6
+![Test Sample 6](example_images/test6_sample.jpg)
+
+### Test Sample 7
+![Test Sample 7](example_images/test7_sample.jpg)
+
+### Test Sample 8
+![Test Sample 8](example_images/test8_sample.jpg)
+
 ## Installation
 
 ```bash
@@ -169,31 +194,6 @@ devise/
 - **Depth Estimation**: `Intel/dpt-large`
 
 Both models are automatically downloaded from Hugging Face Hub on first use.
-
-## Examples
-
-Below are sample images processed using the DEVISE system:
-
-### Test Sample 1
-![Test Sample 1](example_images/test1_sample.jpg)
-
-### Test Sample 2
-![Test Sample 2](example_images/test2_sample.jpg)
-
-### Test Sample 4
-![Test Sample 4](example_images/test4_sample.jpg)
-
-### Test Sample 5
-![Test Sample 5](example_images/test5_sample.jpg)
-
-### Test Sample 6
-![Test Sample 6](example_images/test6_sample.jpg)
-
-### Test Sample 7
-![Test Sample 7](example_images/test7_sample.jpg)
-
-### Test Sample 8
-![Test Sample 8](example_images/test8_sample.jpg)
 
 ## Output Format
 
